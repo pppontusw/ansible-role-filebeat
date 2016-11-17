@@ -1,0 +1,14 @@
+- name: install filebeat
+  apt: 
+    pkg: curl
+    state: present
+
+- name: download filebeat
+  get_url:
+    url: https://download.elastic.co/beats/filebeat/filebeat_1.2.2_amd64.deb
+    dest: /tmp/filebeat_1.2.2_amd64.deb
+
+- name: install filebeat
+  apt: 
+    deb: /tmp/filebeat_1.2.2_amd64.deb
+    state: present

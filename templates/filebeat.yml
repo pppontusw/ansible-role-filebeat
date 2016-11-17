@@ -1,0 +1,12 @@
+{% if filebeat_paths is defined and logstash_hosts is defined %}
+filebeat:
+  prospectors:
+    -
+      paths:
+{% for path in filebeat_paths %}
+      - "{{path}}"
+{% endfor %}
+output:
+  logstash:
+    hosts: [{% for host in logstash_hosts %}'{{host}}',{% endfor %}]
+{% endif %}

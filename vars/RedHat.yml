@@ -1,0 +1,2 @@
+squid_log_path: /var/log/squid
+nginx_log_path: /var/log/nginx

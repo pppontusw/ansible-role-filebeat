@@ -1,0 +1,16 @@
+- name: setup
+  hosts: all
+  vars: 
+    - filebeat_paths: ["/var/log/*"]
+  roles: 
+    - filebeat
+  tags: setup
+
+- name: test
+  hosts: all
+  tasks:
+    - shell: ps cax|grep filebeat
+      register: pid
+    - fail: msg={{pid}}
+      when: pid.stdout == 0
+  tags: test
